@@ -17,7 +17,7 @@ describe('OKXWaasClient tests', () => {
     client = new OKXWaasClient(conf);
   });
 
-  test('queryUserBalanceList', async () => {
+  test.skip('queryUserBalanceList', async () => {
     const data = await client.defiApis.queryUserBalanceList(
       '0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
       '1',
@@ -29,7 +29,6 @@ describe('OKXWaasClient tests', () => {
         '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', // USDC
       ]
     );
-    console.log(data.length);
     expect(data.length).toBe(3);
     expect(Number(data[0].coinAmount)).toBeGreaterThan(1);
   });

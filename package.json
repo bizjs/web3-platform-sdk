@@ -19,8 +19,7 @@
   ],
   "license": "MIT",
   "files": [
-    "dist",
-    "compiled"
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
