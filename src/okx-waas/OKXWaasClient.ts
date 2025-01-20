@@ -2,6 +2,7 @@ import { createHmac } from 'node:crypto';
 import { stringify } from 'qs';
 
 import { DefiApis } from './apis/DefiApis';
+import { WalletApis } from './apis/WalletApis';
 
 export type OKXWaasClientOptions = {
   apiKey: string;
@@ -14,8 +15,9 @@ export class OKXWaasClient {
   constructor(private options: OKXWaasClientOptions) {}
 
   defiApis = new DefiApis(this);
+  walletApis = new WalletApis(this);
 
-  private createSignature(
+  private _createSignature(
     method: 'GET' | 'POST',
     requestPath: string,
     params?: Record<string, string>
@@ -48,7 +50,7 @@ export class OKXWaasClient {
     requestPath: string,
     data?: Record<string, any>
   ) {
-    const { signature, timestamp } = this.createSignature(
+    const { signature, timestamp } = this._createSignature(
       method,
       requestPath,
       data
