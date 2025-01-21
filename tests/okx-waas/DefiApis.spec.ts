@@ -1,24 +1,25 @@
-import { OKXWaasClient } from './OKXWaasClient';
+import { OKXWaasClient } from '../../src';
+
 import 'dotenv/config';
 
 function getEnv(name: string) {
   return process.env[name] as string;
 }
 
-describe('OKXWaasClient tests', () => {
-  let client: OKXWaasClient;
+describe('DefiApis tests', () => {
+  let defiApis: OKXWaasClient['defiApis'];
   beforeAll(() => {
     const conf = {
       apiKey: getEnv('OKX_WAAS_API_KEY'),
       secretKey: getEnv('OKX_WAAS_SECRET_KEY'),
       passphrase: getEnv('OKX_WAAS_PASSPHRASE'),
+      projectID: getEnv('OKX_WAAS_PROJECT_ID'),
     };
-    console.log(conf);
-    client = new OKXWaasClient(conf);
+    defiApis = new OKXWaasClient(conf).defiApis;
   });
 
   test.skip('queryUserBalanceList', async () => {
-    const data = await client.defiApis.queryUserBalanceList(
+    const data = await defiApis.queryUserBalanceList(
       '0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
       '1',
       [

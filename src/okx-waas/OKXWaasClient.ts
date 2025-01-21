@@ -3,6 +3,7 @@ import { stringify } from 'qs';
 
 import { DefiApis } from './apis/DefiApis';
 import { WalletApis } from './apis/WalletApis';
+import { WaasResponseBase } from './types';
 
 export type OKXWaasClientOptions = {
   apiKey: string;
@@ -45,7 +46,7 @@ export class OKXWaasClient {
     return { signature, timestamp };
   }
 
-  async __request(
+  async __request<T>(
     method: 'POST' | 'GET',
     requestPath: string,
     data?: Record<string, any>
@@ -79,10 +80,13 @@ export class OKXWaasClient {
     }
 
     const url = `https://www.okx.com${requestPath}${search}`;
+
     const result = await fetch(url, opt)
-      .then((res) => res.json())
-      .then((resData: any) => {
-        // { code: number; msg: string; data: unknown }
+      .then((res) => res.json() as Promise<WaasResponseBase<T>>)
+      .then((resData) => {
+        if (resData.code !== '0') {
+          return Promise.reject(resData);
+        }
         return resData.data;
       });
     return result;

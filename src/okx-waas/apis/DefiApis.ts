@@ -5,7 +5,7 @@ export class DefiApis {
 
   /**
    * Query user’s balance list
-   * https://www.okx.com/zh-hans/web3/build/docs/waas/defi-api-reference-personal-query-balance
+   * https://www.okx.com/web3/build/docs/waas/defi-api-reference-personal-query-balance
    */
   queryUserBalanceList(
     address: string,
