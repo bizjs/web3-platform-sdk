@@ -1,3 +1,7 @@
+## 0.0.3 (2025-01-21)
+
+- Add more waas wallet APIs
+
 ## 0.0.2 (2025-01-20)
 
 - Update okx wallet client

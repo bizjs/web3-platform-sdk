@@ -1,6 +1,6 @@
 {
   "name": "web3-platform-sdk",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An API collection of a lot of web3 platform",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
